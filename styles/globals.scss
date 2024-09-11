@@ -1,17 +1,116 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body{
+body {
   background-color: $light-background;
   height: 100vh;
 }
 
-h1{
+h1 {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   font-size: 5rem;
   text-align: center;
+}
+
+:root {
+  --surface-color: #fff;
+  --curve: 40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  background-color: #fef8f8;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 5vw;
+  padding: 0;
+  list-style-type: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  text-decoration: none;
+  background-color: #fff;
+  padding: 1rem;
+  transition: box-shadow 370ms ease;
+  border-radius: 4px;
+
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+}
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__title {
+  font-size: 1em;
+  margin: 0 0 0.3em;
+  color: #6a515e;
+}
+
+.drag-zone {
+  width: 399.2px;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 12px;
+}
+
+.drop-zone {
+  background-color: rgb(235, 224, 224);
+  width: calc(100vw - 399.2px);
+  height: 100vh;
+  padding: 1rem;
+  border: 2px dashed rgb(159, 135, 135);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  li {
+    list-style: none;
+    position: relative;
+    .card {
+      box-shadow: none;
+      border: 1.5px dashed gray;
+      border-radius: 0;
+    }
+    .edit-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 28px;
+      height: 28px;
+      display: none;
+      background: rgb(159, 135, 135);
+      padding: 8px;
+      .edit-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    &:hover {
+      .card {
+        border: 1px dashed blue;
+      }
+      .edit-content {
+        display: block;
+      }
+    }
+  }
 }
